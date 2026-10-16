@@ -1,0 +1,59 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "2d127ae0917cebc011a0",
+  "position": {
+    "x": 715.55554628855907,
+    "y": 12.358030752227387,
+    "z": 7000,
+    "height": 64.976984890645724,
+    "width": 221.56086651236575,
+    "tabOrder": 7000
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "sensor_data"
+                    }
+                  },
+                  "Property": "Failure Mode"
+                }
+              },
+              "queryRef": "sensor_data.Failure Mode",
+              "nativeQueryRef": "Failure Mode",
+              "active": true
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Dropdown'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

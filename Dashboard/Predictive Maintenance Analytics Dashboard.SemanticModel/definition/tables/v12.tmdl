@@ -1,0 +1,67 @@
+table v12
+	lineageTag: 222f67b2-69a8-4c10-8698-222d30ea7ddd
+
+	column Type
+		dataType: string
+		lineageTag: de6f76ca-9ba0-4087-9764-90b46c88b3ea
+		summarizeBy: none
+		sourceColumn: Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column failure_mode
+		dataType: string
+		lineageTag: 8595f266-ee8d-48a3-9930-d9211a2a858b
+		summarizeBy: none
+		sourceColumn: failure_mode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tool_wear_min
+		dataType: int64
+		formatString: 0
+		lineageTag: e24b4e6d-a103-4281-b64a-a5aabac1ca9f
+		summarizeBy: sum
+		sourceColumn: Tool_wear_min
+
+		annotation SummarizationSetBy = Automatic
+
+	column Power_kW
+		dataType: double
+		lineageTag: 39911d6b-ba49-4f00-8a3b-ad25001561ad
+		summarizeBy: sum
+		sourceColumn: Power_kW
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Strain_Index
+		dataType: double
+		lineageTag: 317030f1-b9f3-43a7-a3a8-e420a54fe078
+		summarizeBy: sum
+		sourceColumn: Strain_Index
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Temp_Diff_K
+		dataType: double
+		lineageTag: aca85308-5022-43ed-988f-7a0412196feb
+		summarizeBy: sum
+		sourceColumn: Temp_Diff_K
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition v12 = m
+		mode: import
+		source =
+				let
+				    Source = MySQL.Database("localhost", "predictive_maintenance_db", [ReturnSingleDatabase=true]),
+				    predictive_maintenance_db_v12 = Source{[Schema="predictive_maintenance_db",Item="v12"]}[Data]
+				in
+				    predictive_maintenance_db_v12
+

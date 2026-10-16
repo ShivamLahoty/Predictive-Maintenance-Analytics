@@ -1,0 +1,41 @@
+table v1
+	lineageTag: 08efd2fd-d60c-4b88-ac05-d886ef99092b
+
+	column total_operations
+		dataType: int64
+		formatString: 0
+		lineageTag: baf22398-1dc4-4857-a12b-640840430495
+		summarizeBy: sum
+		sourceColumn: total_operations
+
+		annotation SummarizationSetBy = Automatic
+
+	column failed_operations
+		dataType: double
+		lineageTag: 9c78dc23-27a1-4efe-8fe6-18caf0ee4ab8
+		summarizeBy: sum
+		sourceColumn: failed_operations
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column failure_pct
+		dataType: double
+		lineageTag: a1431e9d-5a58-4e28-ae73-f401857f67c4
+		summarizeBy: sum
+		sourceColumn: failure_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition v1 = m
+		mode: import
+		source =
+				let
+				    Source = MySQL.Database("localhost", "predictive_maintenance_db", [ReturnSingleDatabase=true]),
+				    predictive_maintenance_db_v1 = Source{[Schema="predictive_maintenance_db",Item="v1"]}[Data]
+				in
+				    predictive_maintenance_db_v1
+

@@ -1,0 +1,162 @@
+table v8
+	lineageTag: 61f739f3-f5ca-40ef-a33a-d40c27ac738f
+
+	column Type
+		dataType: string
+		lineageTag: 7ac2f111-d67a-4fce-9200-a5d3886e4db6
+		summarizeBy: none
+		sourceColumn: Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Air_temperature_K
+		dataType: double
+		lineageTag: 2c81b276-6a27-414a-bfe6-a852e6ad755e
+		summarizeBy: sum
+		sourceColumn: Air_temperature_K
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Process_temperature_K
+		dataType: double
+		lineageTag: b3ca4afb-911d-427f-88aa-a39ad7e93410
+		summarizeBy: sum
+		sourceColumn: Process_temperature_K
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Rotational_speed_rpm
+		dataType: int64
+		formatString: 0
+		lineageTag: 056c80ff-8ab2-4fe4-88c3-7047d77b0777
+		summarizeBy: sum
+		sourceColumn: Rotational_speed_rpm
+
+		annotation SummarizationSetBy = Automatic
+
+	column Torque_Nm
+		dataType: double
+		lineageTag: 16c70a4d-1207-4267-b1a6-4e9e83c4671b
+		summarizeBy: sum
+		sourceColumn: Torque_Nm
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Tool_wear_min
+		dataType: int64
+		formatString: 0
+		lineageTag: e3009201-7416-49b3-a372-a6dda4ce22d8
+		summarizeBy: sum
+		sourceColumn: Tool_wear_min
+
+		annotation SummarizationSetBy = Automatic
+
+	column Machine_failure
+		dataType: int64
+		formatString: 0
+		lineageTag: 7472e74a-b380-4615-9ca2-a67dc94170d4
+		summarizeBy: sum
+		sourceColumn: Machine_failure
+
+		annotation SummarizationSetBy = Automatic
+
+	column TWF
+		dataType: int64
+		formatString: 0
+		lineageTag: ddb67ad4-300b-4a96-8050-2acc09f56c60
+		summarizeBy: sum
+		sourceColumn: TWF
+
+		annotation SummarizationSetBy = Automatic
+
+	column HDF
+		dataType: int64
+		formatString: 0
+		lineageTag: 0c9ae7fe-3add-48a3-b23e-8d9635f52e28
+		summarizeBy: sum
+		sourceColumn: HDF
+
+		annotation SummarizationSetBy = Automatic
+
+	column PWF
+		dataType: int64
+		formatString: 0
+		lineageTag: 158ee897-0752-4435-8fe6-acfe63055e1d
+		summarizeBy: sum
+		sourceColumn: PWF
+
+		annotation SummarizationSetBy = Automatic
+
+	column OSF
+		dataType: int64
+		formatString: 0
+		lineageTag: b531bc74-ae90-46b3-97e4-718355095784
+		summarizeBy: sum
+		sourceColumn: OSF
+
+		annotation SummarizationSetBy = Automatic
+
+	column RNF
+		dataType: int64
+		formatString: 0
+		lineageTag: f3d7b291-7a33-4379-aec6-71489c3153eb
+		summarizeBy: sum
+		sourceColumn: RNF
+
+		annotation SummarizationSetBy = Automatic
+
+	column Temp_Diff_K
+		dataType: double
+		lineageTag: 1c203eb4-c631-4214-a3bd-351e7d099324
+		summarizeBy: sum
+		sourceColumn: Temp_Diff_K
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Power_kW
+		dataType: double
+		lineageTag: 8696083e-8c93-4cd3-9179-0e0dfe896617
+		summarizeBy: sum
+		sourceColumn: Power_kW
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Strain_Index
+		dataType: double
+		lineageTag: e59671e5-2b1a-4ba9-bd0f-7d16e6817467
+		summarizeBy: sum
+		sourceColumn: Strain_Index
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column power_band
+		dataType: string
+		lineageTag: 858eff05-bf48-42f9-a85b-54473a15b6e2
+		summarizeBy: none
+		sourceColumn: power_band
+
+		annotation SummarizationSetBy = Automatic
+
+	partition v8 = m
+		mode: import
+		source =
+				let
+				    Source = MySQL.Database("localhost", "predictive_maintenance_db", [ReturnSingleDatabase=true]),
+				    predictive_maintenance_db_v8 = Source{[Schema="predictive_maintenance_db",Item="v8"]}[Data]
+				in
+				    predictive_maintenance_db_v8
+
+	annotation PBI_ResultType = Table
+

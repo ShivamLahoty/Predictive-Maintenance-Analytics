@@ -1,0 +1,112 @@
+table v2
+	lineageTag: 10ce94f9-8d85-497c-a8b5-ce74ddd09001
+
+	column Tool_Wear_Failures
+		dataType: double
+		lineageTag: d5515f43-3d06-414b-bba9-6d0f34ce5e25
+		summarizeBy: sum
+		sourceColumn: Tool_Wear_Failures
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column twf_contri
+		dataType: double
+		lineageTag: 8b3806c8-caee-43f8-8bf3-faebfccb0450
+		summarizeBy: sum
+		sourceColumn: twf_contri
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Heat_Failures
+		dataType: double
+		lineageTag: abdf7bfb-158d-45b6-9114-a5b24366d9f0
+		summarizeBy: sum
+		sourceColumn: Heat_Failures
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column hdf_contri
+		dataType: double
+		lineageTag: 87759d52-54d3-4d4a-bbc1-dd0aef89240c
+		summarizeBy: sum
+		sourceColumn: hdf_contri
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Power_Failures
+		dataType: double
+		lineageTag: 5e6d6235-6e14-4356-aeca-7071bb69b46b
+		summarizeBy: sum
+		sourceColumn: Power_Failures
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column pwf_contri
+		dataType: double
+		lineageTag: eb29fd4c-7fa8-4f1e-b441-32748f88ca18
+		summarizeBy: sum
+		sourceColumn: pwf_contri
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Overstrain_Failures
+		dataType: double
+		lineageTag: d38449c7-1032-4ff7-9fc7-dac80719c07e
+		summarizeBy: sum
+		sourceColumn: Overstrain_Failures
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column osf_contri
+		dataType: double
+		lineageTag: b27ed52d-5b4f-4a43-95be-82cf5f6801c0
+		summarizeBy: sum
+		sourceColumn: osf_contri
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Random_Failures
+		dataType: double
+		lineageTag: f6b93542-e660-4bb9-bccd-861762b132f1
+		summarizeBy: sum
+		sourceColumn: Random_Failures
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column rnf_contri
+		dataType: double
+		lineageTag: 40bc3eba-5267-4d98-85c8-d4660698aeaf
+		summarizeBy: sum
+		sourceColumn: rnf_contri
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition v2 = m
+		mode: import
+		source =
+				let
+				    Source = MySQL.Database("localhost", "predictive_maintenance_db", [ReturnSingleDatabase=true]),
+				    predictive_maintenance_db_v2 = Source{[Schema="predictive_maintenance_db",Item="v2"]}[Data]
+				in
+				    predictive_maintenance_db_v2
+

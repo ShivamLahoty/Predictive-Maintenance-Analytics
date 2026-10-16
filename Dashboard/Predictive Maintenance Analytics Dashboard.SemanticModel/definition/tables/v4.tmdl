@@ -1,0 +1,66 @@
+table v4
+	lineageTag: 85f33c95-5370-40fb-9f89-aadb765f1560
+
+	column TWF
+		dataType: int64
+		formatString: 0
+		lineageTag: ede09d05-5238-4b7e-b7d4-4b95aefd7236
+		summarizeBy: sum
+		sourceColumn: TWF
+
+		annotation SummarizationSetBy = Automatic
+
+	column HDF
+		dataType: int64
+		formatString: 0
+		lineageTag: bcb67952-a5ef-4a3b-bbce-58ef53afee25
+		summarizeBy: sum
+		sourceColumn: HDF
+
+		annotation SummarizationSetBy = Automatic
+
+	column PWF
+		dataType: int64
+		formatString: 0
+		lineageTag: da5013f1-9a58-40b6-b094-073b6308ac3c
+		summarizeBy: sum
+		sourceColumn: PWF
+
+		annotation SummarizationSetBy = Automatic
+
+	column OSF
+		dataType: int64
+		formatString: 0
+		lineageTag: 36a2b492-c2e9-4522-b63f-f2ba4acfad44
+		summarizeBy: sum
+		sourceColumn: OSF
+
+		annotation SummarizationSetBy = Automatic
+
+	column RNF
+		dataType: int64
+		formatString: 0
+		lineageTag: edbf71a9-7755-4136-b959-19f8dc06eb32
+		summarizeBy: sum
+		sourceColumn: RNF
+
+		annotation SummarizationSetBy = Automatic
+
+	column Machine_failure
+		dataType: int64
+		formatString: 0
+		lineageTag: b18a5fb1-c629-4f15-885f-926482e54ceb
+		summarizeBy: sum
+		sourceColumn: Machine_failure
+
+		annotation SummarizationSetBy = Automatic
+
+	partition v4 = m
+		mode: import
+		source =
+				let
+				    Source = MySQL.Database("localhost", "predictive_maintenance_db", [ReturnSingleDatabase=true]),
+				    predictive_maintenance_db_v4 = Source{[Schema="predictive_maintenance_db",Item="v4"]}[Data]
+				in
+				    predictive_maintenance_db_v4
+

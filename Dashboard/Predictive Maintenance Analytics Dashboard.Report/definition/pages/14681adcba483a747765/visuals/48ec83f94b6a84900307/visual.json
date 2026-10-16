@@ -1,0 +1,783 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "48ec83f94b6a84900307",
+  "position": {
+    "x": 357.27272727272725,
+    "y": 575.45454545454538,
+    "z": 9000,
+    "height": 140,
+    "width": 604.5454545454545,
+    "tabOrder": 9000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "sensor_data"
+                    }
+                  },
+                  "Property": "Type"
+                }
+              },
+              "queryRef": "sensor_data.Type",
+              "nativeQueryRef": "Type"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mesure"
+                    }
+                  },
+                  "Property": "Total Operations"
+                }
+              },
+              "queryRef": "mesure.Total Operations",
+              "nativeQueryRef": "Total Operations"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mesure"
+                    }
+                  },
+                  "Property": "Failure Rate %"
+                }
+              },
+              "queryRef": "mesure.Failure Rate %",
+              "nativeQueryRef": "Failure Rate %_Base",
+              "hidden": true,
+              "displayName": "Failure Rate %_Base"
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "EXPANDALL(AVERAGE([Avg Torque_Base]), ROWS COLUMNS)",
+                  "Name": "Avg Torque"
+                },
+                "Annotations": {
+                  "customTotalMetadata": {
+                    "baseQueryName": "mesure.Avg Torque"
+                  }
+                }
+              },
+              "queryRef": "select1",
+              "nativeQueryRef": "Avg Torque"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mesure"
+                    }
+                  },
+                  "Property": "Avg Torque"
+                }
+              },
+              "queryRef": "mesure.Avg Torque",
+              "nativeQueryRef": "Avg Torque_Base",
+              "hidden": true,
+              "displayName": "Avg Torque_Base"
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "EXPANDALL(AVERAGE([Avg Tool Wear_Base]), ROWS COLUMNS)",
+                  "Name": "Avg Tool Wear"
+                },
+                "Annotations": {
+                  "customTotalMetadata": {
+                    "baseQueryName": "mesure.Avg Tool Wear"
+                  }
+                }
+              },
+              "queryRef": "select2",
+              "nativeQueryRef": "Avg Tool Wear"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mesure"
+                    }
+                  },
+                  "Property": "Avg Tool Wear"
+                }
+              },
+              "queryRef": "mesure.Avg Tool Wear",
+              "nativeQueryRef": "Avg Tool Wear_Base",
+              "hidden": true,
+              "displayName": "Avg Tool Wear_Base"
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "EXPANDALL(AVERAGE([Avg Mechanical Power_Base]), ROWS COLUMNS)",
+                  "Name": "Avg Mechanical Power "
+                },
+                "Annotations": {
+                  "customTotalMetadata": {
+                    "baseQueryName": "mesure.Avg Mechanical Power"
+                  }
+                }
+              },
+              "queryRef": "select3",
+              "nativeQueryRef": "Avg Mechanical Power "
+            },
+            {
+              "field": {
+                "NativeVisualCalculation": {
+                  "Language": "dax",
+                  "Expression": "IF(ISATLEVEL([Type]), [Failure Rate %_Base], BLANK())",
+                  "Name": "Failure Rate (%)"
+                },
+                "Annotations": {
+                  "customTotalMetadata": {
+                    "baseQueryName": "mesure.Failure Rate %"
+                  }
+                }
+              },
+              "queryRef": "select",
+              "nativeQueryRef": "Failure Rate (%)",
+              "format": "0.00%;-0.00%;0.00%"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mesure"
+                    }
+                  },
+                  "Property": "Avg Mechanical Power"
+                }
+              },
+              "queryRef": "mesure.Avg Mechanical Power",
+              "nativeQueryRef": "Avg Mechanical Power_Base",
+              "hidden": true,
+              "displayName": "Avg Mechanical Power_Base"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "NativeVisualCalculation": {
+                "Language": "dax",
+                "Expression": "IF(ISATLEVEL([Type]), [Failure Rate %_Base], BLANK())",
+                "Name": "Failure Rate (%)"
+              },
+              "Annotations": {
+                "customTotalMetadata": {
+                  "baseQueryName": "mesure.Failure Rate %"
+                }
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "values": [
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Conditional": {
+                      "Cases": [
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 3,
+                              "Left": {
+                                "Aggregation": {
+                                  "Expression": {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Entity": "v14"
+                                        }
+                                      },
+                                      "Property": "zone_failure_rate_pct"
+                                    }
+                                  },
+                                  "Function": 0
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "5D"
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#00FF00'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "And": {
+                              "Left": {
+                                "Comparison": {
+                                  "ComparisonKind": 2,
+                                  "Left": {
+                                    "Aggregation": {
+                                      "Expression": {
+                                        "Column": {
+                                          "Expression": {
+                                            "SourceRef": {
+                                              "Entity": "v14"
+                                            }
+                                          },
+                                          "Property": "zone_failure_rate_pct"
+                                        }
+                                      },
+                                      "Function": 0
+                                    }
+                                  },
+                                  "Right": {
+                                    "RangePercent": {
+                                      "Min": {
+                                        "ScopedEval": {
+                                          "Expression": {
+                                            "Aggregation": {
+                                              "Expression": {
+                                                "ScopedEval": {
+                                                  "Expression": {
+                                                    "Aggregation": {
+                                                      "Expression": {
+                                                        "Column": {
+                                                          "Expression": {
+                                                            "SourceRef": {
+                                                              "Entity": "v14"
+                                                            }
+                                                          },
+                                                          "Property": "zone_failure_rate_pct"
+                                                        }
+                                                      },
+                                                      "Function": 0
+                                                    }
+                                                  },
+                                                  "Scope": [
+                                                    {
+                                                      "AllRolesRef": {}
+                                                    }
+                                                  ]
+                                                }
+                                              },
+                                              "Function": 3
+                                            }
+                                          },
+                                          "Scope": []
+                                        }
+                                      },
+                                      "Max": {
+                                        "ScopedEval": {
+                                          "Expression": {
+                                            "Aggregation": {
+                                              "Expression": {
+                                                "ScopedEval": {
+                                                  "Expression": {
+                                                    "Aggregation": {
+                                                      "Expression": {
+                                                        "Column": {
+                                                          "Expression": {
+                                                            "SourceRef": {
+                                                              "Entity": "v14"
+                                                            }
+                                                          },
+                                                          "Property": "zone_failure_rate_pct"
+                                                        }
+                                                      },
+                                                      "Function": 0
+                                                    }
+                                                  },
+                                                  "Scope": [
+                                                    {
+                                                      "AllRolesRef": {}
+                                                    }
+                                                  ]
+                                                }
+                                              },
+                                              "Function": 4
+                                            }
+                                          },
+                                          "Scope": []
+                                        }
+                                      },
+                                      "Percent": 0.1
+                                    }
+                                  }
+                                }
+                              },
+                              "Right": {
+                                "Comparison": {
+                                  "ComparisonKind": 3,
+                                  "Left": {
+                                    "Aggregation": {
+                                      "Expression": {
+                                        "Column": {
+                                          "Expression": {
+                                            "SourceRef": {
+                                              "Entity": "v14"
+                                            }
+                                          },
+                                          "Property": "zone_failure_rate_pct"
+                                        }
+                                      },
+                                      "Function": 0
+                                    }
+                                  },
+                                  "Right": {
+                                    "Literal": {
+                                      "Value": "20D"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#E66C37'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "And": {
+                              "Left": {
+                                "Comparison": {
+                                  "ComparisonKind": 2,
+                                  "Left": {
+                                    "Aggregation": {
+                                      "Expression": {
+                                        "Column": {
+                                          "Expression": {
+                                            "SourceRef": {
+                                              "Entity": "v14"
+                                            }
+                                          },
+                                          "Property": "zone_failure_rate_pct"
+                                        }
+                                      },
+                                      "Function": 0
+                                    }
+                                  },
+                                  "Right": {
+                                    "RangePercent": {
+                                      "Min": {
+                                        "ScopedEval": {
+                                          "Expression": {
+                                            "Aggregation": {
+                                              "Expression": {
+                                                "ScopedEval": {
+                                                  "Expression": {
+                                                    "Aggregation": {
+                                                      "Expression": {
+                                                        "Column": {
+                                                          "Expression": {
+                                                            "SourceRef": {
+                                                              "Entity": "v14"
+                                                            }
+                                                          },
+                                                          "Property": "zone_failure_rate_pct"
+                                                        }
+                                                      },
+                                                      "Function": 0
+                                                    }
+                                                  },
+                                                  "Scope": [
+                                                    {
+                                                      "AllRolesRef": {}
+                                                    }
+                                                  ]
+                                                }
+                                              },
+                                              "Function": 3
+                                            }
+                                          },
+                                          "Scope": []
+                                        }
+                                      },
+                                      "Max": {
+                                        "ScopedEval": {
+                                          "Expression": {
+                                            "Aggregation": {
+                                              "Expression": {
+                                                "ScopedEval": {
+                                                  "Expression": {
+                                                    "Aggregation": {
+                                                      "Expression": {
+                                                        "Column": {
+                                                          "Expression": {
+                                                            "SourceRef": {
+                                                              "Entity": "v14"
+                                                            }
+                                                          },
+                                                          "Property": "zone_failure_rate_pct"
+                                                        }
+                                                      },
+                                                      "Function": 0
+                                                    }
+                                                  },
+                                                  "Scope": [
+                                                    {
+                                                      "AllRolesRef": {}
+                                                    }
+                                                  ]
+                                                }
+                                              },
+                                              "Function": 4
+                                            }
+                                          },
+                                          "Scope": []
+                                        }
+                                      },
+                                      "Percent": 0.2
+                                    }
+                                  }
+                                }
+                              },
+                              "Right": {
+                                "Comparison": {
+                                  "ComparisonKind": 3,
+                                  "Left": {
+                                    "Aggregation": {
+                                      "Expression": {
+                                        "Column": {
+                                          "Expression": {
+                                            "SourceRef": {
+                                              "Entity": "v14"
+                                            }
+                                          },
+                                          "Property": "zone_failure_rate_pct"
+                                        }
+                                      },
+                                      "Function": 0
+                                    }
+                                  },
+                                  "Right": {
+                                    "Literal": {
+                                      "Value": "100D"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#D64550'"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Sum(v14.zone_failure_rate_pct)"
+          }
+        },
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Conditional": {
+                      "Cases": [
+                        {
+                          "Condition": {
+                            "And": {
+                              "Left": {
+                                "Comparison": {
+                                  "ComparisonKind": 2,
+                                  "Left": {
+                                    "SelectRef": {
+                                      "ExpressionName": "select"
+                                    }
+                                  },
+                                  "Right": {
+                                    "Literal": {
+                                      "Value": "0.0279D"
+                                    }
+                                  }
+                                }
+                              },
+                              "Right": {
+                                "Comparison": {
+                                  "ComparisonKind": 3,
+                                  "Left": {
+                                    "SelectRef": {
+                                      "ExpressionName": "select"
+                                    }
+                                  },
+                                  "Right": {
+                                    "Literal": {
+                                      "Value": "0.05D"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#D64550'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "And": {
+                              "Left": {
+                                "Comparison": {
+                                  "ComparisonKind": 2,
+                                  "Left": {
+                                    "SelectRef": {
+                                      "ExpressionName": "select"
+                                    }
+                                  },
+                                  "Right": {
+                                    "Literal": {
+                                      "Value": "0.0211D"
+                                    }
+                                  }
+                                }
+                              },
+                              "Right": {
+                                "Comparison": {
+                                  "ComparisonKind": 3,
+                                  "Left": {
+                                    "SelectRef": {
+                                      "ExpressionName": "select"
+                                    }
+                                  },
+                                  "Right": {
+                                    "Literal": {
+                                      "Value": "0.0278D"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#E66C37'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "And": {
+                              "Left": {
+                                "Comparison": {
+                                  "ComparisonKind": 2,
+                                  "Left": {
+                                    "SelectRef": {
+                                      "ExpressionName": "select"
+                                    }
+                                  },
+                                  "Right": {
+                                    "Literal": {
+                                      "Value": "0D"
+                                    }
+                                  }
+                                }
+                              },
+                              "Right": {
+                                "Comparison": {
+                                  "ComparisonKind": 3,
+                                  "Left": {
+                                    "SelectRef": {
+                                      "ExpressionName": "select"
+                                    }
+                                  },
+                                  "Right": {
+                                    "Literal": {
+                                      "Value": "0.021D"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#00FF59'"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "select"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "spacing": [
+        {
+          "properties": {
+            "spaceAbovePlotArea": {
+              "expr": {
+                "Literal": {
+                  "Value": "16D"
+                }
+              }
+            },
+            "spaceAboveDivider": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            },
+            "spaceAboveSubtitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1.4D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

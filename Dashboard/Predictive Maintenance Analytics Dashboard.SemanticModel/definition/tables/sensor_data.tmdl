@@ -1,0 +1,411 @@
+table sensor_data
+	lineageTag: 973cc102-e93a-4853-94e4-16d52edfa533
+
+	column Type
+		dataType: string
+		lineageTag: 0e1166ee-a8a8-46f1-86b0-5151d70b99de
+		summarizeBy: none
+		sourceColumn: Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Air_temperature_K
+		dataType: double
+		lineageTag: 4750e39e-c37c-4a27-88fc-3daacfcfe7c9
+		summarizeBy: sum
+		sourceColumn: Air_temperature_K
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Process_temperature_K
+		dataType: double
+		lineageTag: f5ab234e-09f7-4d36-8b1b-b355a77ce4ca
+		summarizeBy: sum
+		sourceColumn: Process_temperature_K
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Rotational_speed_rpm
+		dataType: int64
+		formatString: 0
+		lineageTag: d9e5041d-8352-49f3-9d5a-0baf3a97b6d9
+		summarizeBy: sum
+		sourceColumn: Rotational_speed_rpm
+
+		annotation SummarizationSetBy = Automatic
+
+	column Torque_Nm
+		dataType: double
+		lineageTag: e61dfcff-4afc-4e98-aa65-28aeac6ce682
+		summarizeBy: sum
+		sourceColumn: Torque_Nm
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Tool_wear_min
+		dataType: int64
+		formatString: 0
+		lineageTag: 03241e9d-3566-452a-ad23-c194c61f8cfe
+		summarizeBy: sum
+		sourceColumn: Tool_wear_min
+
+		annotation SummarizationSetBy = Automatic
+
+	column Machine_failure
+		dataType: int64
+		formatString: 0
+		lineageTag: 74dcfaea-7d19-4a92-b031-292687f1b879
+		summarizeBy: none
+		sourceColumn: Machine_failure
+
+		annotation SummarizationSetBy = Automatic
+
+	column TWF
+		dataType: int64
+		formatString: 0
+		lineageTag: a9e0ba5b-70b4-4ae1-ad41-89a8c90b1bd4
+		summarizeBy: sum
+		sourceColumn: TWF
+
+		annotation SummarizationSetBy = Automatic
+
+	column HDF
+		dataType: int64
+		formatString: 0
+		lineageTag: fb49199f-09f1-483a-8c90-fe4b088e6e44
+		summarizeBy: sum
+		sourceColumn: HDF
+
+		annotation SummarizationSetBy = Automatic
+
+	column PWF
+		dataType: int64
+		formatString: 0
+		lineageTag: 109a0898-01d3-48d8-97d4-8b80c7c9240e
+		summarizeBy: sum
+		sourceColumn: PWF
+
+		annotation SummarizationSetBy = Automatic
+
+	column OSF
+		dataType: int64
+		formatString: 0
+		lineageTag: 58be5473-b21a-4423-86f8-94afa7b085b8
+		summarizeBy: sum
+		sourceColumn: OSF
+
+		annotation SummarizationSetBy = Automatic
+
+	column RNF
+		dataType: int64
+		formatString: 0
+		lineageTag: a060ea09-e837-46f5-986f-0bb770bf7086
+		summarizeBy: sum
+		sourceColumn: RNF
+
+		annotation SummarizationSetBy = Automatic
+
+	column Temp_Diff_K
+		dataType: double
+		lineageTag: 56e213bc-6189-4e04-83c6-9f5fed490732
+		summarizeBy: sum
+		sourceColumn: Temp_Diff_K
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Power_kW
+		dataType: double
+		lineageTag: 4bcd6ea5-f2d6-4ae9-b0ee-0ea919625aa2
+		summarizeBy: sum
+		sourceColumn: Power_kW
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Strain_Index
+		dataType: double
+		lineageTag: 6e28025d-6408-429e-ad35-18a3a85dc2e2
+		summarizeBy: sum
+		sourceColumn: Strain_Index
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Failure Mode' =
+			
+			VAR Failures =
+			sensor_data[TWF] +
+			sensor_data[HDF] +
+			sensor_data[PWF] +
+			sensor_data[OSF] +
+			sensor_data[RNF]
+			
+			RETURN
+			
+			IF(
+			Failures > 1,
+			"Multiple Failure Modes",
+			
+			SWITCH(
+			TRUE(),
+			
+			sensor_data[TWF]=1,"Tool Wear Failure",
+			
+			sensor_data[HDF]=1,"Heat Dissipation Failure",
+			
+			sensor_data[PWF]=1,"Power Failure",
+			
+			sensor_data[OSF]=1,"Overstrain Failure",
+			
+			sensor_data[RNF]=1,"Random Failure",
+			
+			"No Failure"
+			)
+			)
+		lineageTag: e332aa3b-ae51-4ba6-a14a-5592867f5dda
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Thermal Zone' =
+			
+			IF(
+			sensor_data[Temp_Diff_K]<8.6,
+			"Low Thermal Dissipation",
+			"Normal Thermal Dissipation"
+			)
+		lineageTag: 2da64f62-2da1-4709-a6f5-dd8ddab85e27
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tool Wear Bucket' =
+			
+			SWITCH(
+			
+			TRUE(),
+			
+			sensor_data[Tool_wear_min]<=50,"0-50 min",
+			
+			sensor_data[Tool_wear_min]<=100,"51-100 min",
+			
+			sensor_data[Tool_wear_min]<=150,"101-150 min",
+			
+			sensor_data[Tool_wear_min]<=200,"151-200 min",
+			
+			">200 min"
+			
+			)
+		lineageTag: f86b8354-6184-474b-9874-78e2a2b7b85e
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Power Band' =
+			
+			SWITCH(
+			
+			TRUE(),
+			
+			sensor_data[Power_kW]<2,"Low (<2kW)",
+			
+			sensor_data[Power_kW]<=6,"Nominal (2-6kW)",
+			
+			"High (>6kW)"
+			
+			)
+		lineageTag: 33fb502f-8dd4-482c-bb2b-c12055041132
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Failure Index' =
+			
+			IF(
+			    sensor_data[Machine_failure] = 1,
+			    sensor_data[Index]
+			)
+		formatString: 0
+		lineageTag: 5bee5171-940d-4c0c-9533-8a4c15a3bb0c
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Index
+		dataType: int64
+		formatString: 0
+		lineageTag: 45f8ea5c-c933-4511-9b26-9c739bd836e9
+		summarizeBy: sum
+		sourceColumn: Index
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Previous Failure Index' =
+			
+			VAR CurrentIndex = sensor_data[Index]
+			RETURN
+			IF(
+			    sensor_data[Machine_failure] = 1,
+			    MAXX(
+			        FILTER(
+			            ALL(sensor_data),
+			            sensor_data[Machine_failure] = 1 &&
+			            sensor_data[Index] < CurrentIndex
+			        ),
+			        sensor_data[Index]
+			    )
+			)
+		formatString: 0
+		lineageTag: 50eefd30-3648-4acb-bb99-5d6ba075df58
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Operations Between Failures' =
+			
+			IF(
+			    sensor_data[Machine_failure] = 1,
+			    IF(
+			        ISBLANK(sensor_data[Previous Failure Index]),
+			        sensor_data[Index],
+			        sensor_data[Index] - sensor_data[Previous Failure Index]
+			    )
+			)
+		formatString: 0
+		lineageTag: 5278724e-ebdb-4d93-81bb-666b11af541b
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Speed Z-Score' =
+			
+			VAR MeanSpeed =
+			    CALCULATE(
+			        AVERAGE(sensor_data[Rotational_speed_rpm]),
+			        ALL(sensor_data)
+			    )
+			
+			VAR StdSpeed =
+			    CALCULATE(
+			        STDEV.P(sensor_data[Rotational_speed_rpm]),
+			        ALL(sensor_data)
+			    )
+			
+			RETURN
+			DIVIDE(
+			    sensor_data[Rotational_speed_rpm] - MeanSpeed,
+			    StdSpeed
+			)
+		lineageTag: f768b797-a278-4bb7-af24-9ee08bf3ce01
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Torque Z-Score' =
+			
+			VAR MeanTorque =
+			    CALCULATE(
+			        AVERAGE(sensor_data[Torque_Nm]),
+			        ALL(sensor_data)
+			    )
+			
+			VAR StdTorque =
+			    CALCULATE(
+			        STDEV.P(sensor_data[Torque_Nm]),
+			        ALL(sensor_data)
+			    )
+			
+			RETURN
+			DIVIDE(
+			    sensor_data[Torque_Nm] - MeanTorque,
+			    StdTorque
+			)
+		lineageTag: 5dcd4e54-167b-44e9-ba7b-418d6426d9dc
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Mechanical Strain Zone' =
+			
+			VAR Power = sensor_data[Power_kW]
+			VAR AvgPower =
+			    CALCULATE(
+			        AVERAGE(sensor_data[Power_kW]),
+			        ALL(sensor_data)
+			    )
+			VAR StdPower =
+			    CALCULATE(
+			        STDEV.P(sensor_data[Power_kW]),
+			        ALL(sensor_data)
+			    )
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    Power >= AvgPower + StdPower, "High",
+			    Power <= AvgPower - StdPower, "Low",
+			    "Moderate"
+			)
+		lineageTag: c9cbcd1a-6301-463f-90bf-54893d283ed7
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Prescriptive Action' =
+			
+			SWITCH(
+			    TRUE(),
+			
+			    -- Priority 1: High wear near tool fracture limit
+			    sensor_data[Tool_wear_min] >= 200,
+			    "CRITICAL: Replace Tool Immediately",
+			
+			    -- Priority 2: Thermal dissipation risk
+			    sensor_data[Temp_Diff_K] < 8.6,
+			    "WARNING: Reduce Feed Rate (Cooling Hazard)",
+			
+			    -- Priority 3: Severe Mechanical Strain
+			    sensor_data[Torque Z-Score] > 1.8 &&
+			    sensor_data[Speed Z-Score] < -1.2,
+			    "ALERT: High Mechanical Strain",
+			
+			    -- Priority 4: Power approaching unsafe region
+			    sensor_data[Power_kW] > 8.0 ||
+			    sensor_data[Power_kW] < 3.8,
+			    "WARNING: Approaching Power Failure Limit",
+			
+			    "OPTIMAL: Operating in Safe Envelope"
+			)
+		lineageTag: 61bd8ede-c069-4d20-9574-4ee2c334de27
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition sensor_data = m
+		mode: import
+		source =
+				let
+				    Source = MySQL.Database("localhost", "predictive_maintenance_db", [ReturnSingleDatabase=true]),
+				    predictive_maintenance_db_sensor_data = Source{[Schema="predictive_maintenance_db",Item="sensor_data"]}[Data],
+				    #"Added Index" = Table.AddIndexColumn(predictive_maintenance_db_sensor_data, "Index", 1, 1, Int64.Type)
+				in
+				    #"Added Index"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

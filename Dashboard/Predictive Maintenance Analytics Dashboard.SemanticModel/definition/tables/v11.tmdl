@@ -1,0 +1,79 @@
+table v11
+	lineageTag: 1c39eedf-3962-4ae9-a100-d7da79eed658
+
+	column Type
+		dataType: string
+		lineageTag: ed7aff43-a8bf-4155-a01f-a2263ae03575
+		summarizeBy: none
+		sourceColumn: Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column failure_tool_wear
+		dataType: int64
+		formatString: 0
+		lineageTag: 2a1ed3c2-fa32-460f-9e34-41998ad6caf6
+		summarizeBy: sum
+		sourceColumn: failure_tool_wear
+
+		annotation SummarizationSetBy = Automatic
+
+	column failure_power
+		dataType: double
+		lineageTag: 0efabcb7-7746-4f8f-88f8-815d9561af54
+		summarizeBy: sum
+		sourceColumn: failure_power
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_power_5_steps_prior
+		dataType: double
+		lineageTag: fa0eeecb-1163-424a-b1f2-fafcb80617c7
+		summarizeBy: sum
+		sourceColumn: avg_power_5_steps_prior
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column power_spike_delta
+		dataType: double
+		lineageTag: 737d3033-c72c-48ed-a8df-228cd13c0e9c
+		summarizeBy: sum
+		sourceColumn: power_spike_delta
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column failure_strain
+		dataType: double
+		lineageTag: ad496047-9a87-4fdc-a312-4d245cdf084c
+		summarizeBy: sum
+		sourceColumn: failure_strain
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_strain_5_steps_prior
+		dataType: double
+		lineageTag: a8c0ce96-a041-442d-ada7-0e804b0b2a09
+		summarizeBy: sum
+		sourceColumn: avg_strain_5_steps_prior
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition v11 = m
+		mode: import
+		source =
+				let
+				    Source = MySQL.Database("localhost", "predictive_maintenance_db", [ReturnSingleDatabase=true]),
+				    predictive_maintenance_db_v11 = Source{[Schema="predictive_maintenance_db",Item="v11"]}[Data]
+				in
+				    predictive_maintenance_db_v11
+

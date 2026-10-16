@@ -1,0 +1,89 @@
+table v5
+	lineageTag: bd636a6a-c3a4-4617-aee0-ee343a8bcca1
+
+	column Type
+		dataType: string
+		lineageTag: c100beb3-204d-40cd-9b2b-b0c7bef3eb27
+		summarizeBy: none
+		sourceColumn: Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_operations
+		dataType: int64
+		formatString: 0
+		lineageTag: c99c030f-f200-4b67-aa38-191bfdbb0592
+		summarizeBy: sum
+		sourceColumn: total_operations
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_machine_failures
+		dataType: double
+		lineageTag: b0172ad6-4e76-457e-9130-83517c33ef8a
+		summarizeBy: sum
+		sourceColumn: total_machine_failures
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column failure_pct
+		dataType: double
+		lineageTag: d6f65d9a-2f95-441d-b073-86ad0fa3c18c
+		summarizeBy: sum
+		sourceColumn: failure_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_tool_wear
+		dataType: double
+		lineageTag: 0ab8ceb0-c707-46c4-85b0-4e7c177fa0b6
+		summarizeBy: sum
+		sourceColumn: avg_tool_wear
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_torque
+		dataType: double
+		lineageTag: 589fb566-7bd3-411e-adf0-982c6ab8e1c2
+		summarizeBy: sum
+		sourceColumn: avg_torque
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_power
+		dataType: double
+		lineageTag: 4ca4a03c-d0ea-443e-890c-ab3af5fcbc45
+		summarizeBy: sum
+		sourceColumn: avg_power
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_temp_diff_k
+		dataType: double
+		lineageTag: d78a8f9e-0bd2-47fe-a717-72d02688b426
+		summarizeBy: sum
+		sourceColumn: avg_temp_diff_k
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition v5 = m
+		mode: import
+		source =
+				let
+				    Source = MySQL.Database("localhost", "predictive_maintenance_db", [ReturnSingleDatabase=true]),
+				    predictive_maintenance_db_v5 = Source{[Schema="predictive_maintenance_db",Item="v5"]}[Data]
+				in
+				    predictive_maintenance_db_v5
+

@@ -1,0 +1,44 @@
+relationship AutoDetected_38042cb5-70fd-4520-b486-820081c45582
+	fromColumn: sensor_data.Type
+	toColumn: v5.Type
+
+relationship AutoDetected_1e8d7ab7-8a27-4b98-8c8a-35f477b30ce6
+	fromColumn: v10.Type
+	toColumn: v5.Type
+
+relationship AutoDetected_466bff6f-9215-4ec6-b094-0c6c4c45ce08
+	fromColumn: v11.Type
+	toColumn: v5.Type
+
+relationship AutoDetected_2318bb07-0c7e-4e24-9e18-e7a6c5e2d163
+	fromColumn: v12.Type
+	toColumn: v5.Type
+
+relationship AutoDetected_36716fdc-c3d6-4a15-8120-ba10dcd9c39d
+	fromColumn: v13.Type
+	toColumn: v5.Type
+
+relationship AutoDetected_4d0a2286-cc02-41f9-82a6-e8a60646ac73
+	fromColumn: v6.Type
+	toColumn: v5.Type
+
+relationship AutoDetected_65ed3681-50b5-42c8-8658-a93791635363
+	fromColumn: v7.Type
+	toColumn: v5.Type
+
+relationship AutoDetected_b47da3b5-c0ed-4b02-b238-056056f1bc2e
+	fromColumn: v8.Type
+	toColumn: v5.Type
+
+relationship 3b2a9860-2125-cf22-502b-173056e942e3
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: sensor_data.Type
+	toColumn: v13.Type
+
+relationship 2c6179c2-100b-1c07-fac2-4fc7126e9e15
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: v6.Machine_failure
+	toColumn: sensor_data.Machine_failure
+

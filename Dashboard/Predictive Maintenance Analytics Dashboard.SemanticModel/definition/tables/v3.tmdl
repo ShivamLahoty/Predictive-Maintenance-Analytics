@@ -1,0 +1,42 @@
+table v3
+	lineageTag: 3dcf327f-be30-4615-ac45-2cc703315227
+
+	column total_failed_incidents
+		dataType: double
+		lineageTag: 514f6ca5-6f9c-403d-9db1-1f94afac6f6b
+		summarizeBy: sum
+		sourceColumn: total_failed_incidents
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column total_failure_triggers
+		dataType: double
+		lineageTag: a7ea47c7-7b9a-4823-88b9-bec645976260
+		summarizeBy: sum
+		sourceColumn: total_failure_triggers
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column multi_failure_overlaps
+		dataType: double
+		lineageTag: cb4445d5-05df-442e-928b-9a042c62bd45
+		summarizeBy: sum
+		sourceColumn: multi_failure_overlaps
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition v3 = m
+		mode: import
+		source =
+				let
+				    Source = MySQL.Database("localhost", "predictive_maintenance_db", [ReturnSingleDatabase=true]),
+				    predictive_maintenance_db_v3 = Source{[Schema="predictive_maintenance_db",Item="v3"]}[Data]
+				in
+				    predictive_maintenance_db_v3
+

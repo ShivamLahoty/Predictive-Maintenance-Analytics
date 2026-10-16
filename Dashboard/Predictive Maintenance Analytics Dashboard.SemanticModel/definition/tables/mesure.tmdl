@@ -1,0 +1,102 @@
+table mesure
+	lineageTag: 64e6cfa2-0205-4f80-bd44-501f74e405dc
+
+	measure 'Total Operations' = COUNTROWS(sensor_data)
+		formatString: 0
+		lineageTag: 6c7e7d9f-f72e-4da3-8b4b-686948e5cd6b
+
+	measure 'Machine Failures' =
+			
+			SUM(sensor_data[Machine_failure])
+		formatString: 0
+		lineageTag: e1968d13-e1e0-43de-ba54-65da89eb4703
+
+	measure 'Critical Alerts Count' =
+			
+			CALCULATE(
+			    COUNTROWS(sensor_data),
+			    sensor_data[Prescriptive Action] IN {
+			        "CRITICAL: Replace Tool Immediately",
+			        "WARNING: Reduce Feed Rate (Cooling Hazard)",
+			        "ALERT: High Mechanical Strain",
+			        "WARNING: Approaching Power Failure Limit"
+			    }
+			)
+		formatString: 0
+		lineageTag: be7fdfc2-cd48-43a5-b556-faf9d57f9545
+
+	measure 'AVG OPERATIONS BETWEEN FAILURES' = AVERAGE(v9[ops_between_failures])
+		lineageTag: 840e7aa8-9ab8-435f-803e-0bf8e224993a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Failure Rate %' =
+			
+			DIVIDE(
+			[Machine Failures],
+			[Total Operations]
+			)
+		lineageTag: 08f400f9-99e3-4f3b-a5ef-4baf27680035
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Failure Triggers' =
+			
+			SUM(sensor_data[TWF])
+			+
+			SUM(sensor_data[HDF])
+			+
+			SUM(sensor_data[PWF])
+			+
+			SUM(sensor_data[OSF])
+			+
+			SUM(sensor_data[RNF])
+		formatString: 0
+		lineageTag: 88eee1b9-42a5-4d03-a35e-887ce299f052
+
+	measure 'Avg Operations Between Failures 1' =
+			
+			AVERAGEX(
+			    FILTER(
+			        ALL(sensor_data),
+			        sensor_data[Machine_failure] = 1
+			    ),
+			    sensor_data[Operations Between Failures]
+			)
+		lineageTag: d50db131-3eb6-4c0e-a134-63358b8b8d6a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Torque' =
+			
+			AVERAGE(sensor_data[Torque_Nm])
+		lineageTag: 9c2b1464-d22d-4870-98dc-184d232af228
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Tool Wear' =
+			
+			AVERAGE(sensor_data[Tool_wear_min])
+		lineageTag: 6be907c3-e564-4619-885e-f4037ee0c7ea
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Mechanical Power' =
+			
+			AVERAGE(sensor_data[Power_kW])
+		lineageTag: 5483a782-7e32-4bae-8564-acd35ac08c10
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition mesure = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,881 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.1.0/schema.json",
+  "displayName": "Bookmark 2",
+  "name": "935012d15d2dc730734e",
+  "options": {
+    "targetVisualNames": []
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "14681adcba483a747765",
+    "sections": {
+      "14681adcba483a747765": {
+        "visualContainers": {
+          "c5b974d1dd9107876961": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "abe1cc04145da673730d",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mesure"
+                        }
+                      },
+                      "Property": "Total Operations"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "f51292c63506b7005e9b",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mesure"
+                        }
+                      },
+                      "Property": "Critical Alerts Count"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "d49e39a4a37089055071",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mesure"
+                        }
+                      },
+                      "Property": "Failure Rate %"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "98fcfb7704bc6c575c0d",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mesure"
+                        }
+                      },
+                      "Property": "Total Failure Triggers"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "d659b594540983cc2800",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mesure"
+                        }
+                      },
+                      "Property": "Avg Operations Between Failures 1"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mesure"
+                        }
+                      },
+                      "Property": "Total Operations"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "fa288597074d047848d8": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "16cf45ceb11a7552c085",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "sensor_data"
+                        }
+                      },
+                      "Property": "Type"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "sensor_data"
+                        }
+                      },
+                      "Property": "Type"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "49707b890b3c30540c0d": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "e1824dae0130c890d810",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "sensor_data"
+                        }
+                      },
+                      "Property": "Speed Z-Score"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "3542cf837c9a6240e14c",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "sensor_data"
+                        }
+                      },
+                      "Property": "Torque Z-Score"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "916b03382a24c09d36e3",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "sensor_data"
+                        }
+                      },
+                      "Property": "Machine_failure"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "scatterChart",
+              "objects": {},
+              "activeProjections": {
+                "X": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "sensor_data"
+                        }
+                      },
+                      "Property": "Speed Z-Score"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "bce2b66534dba9d4d479": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "aab5a759c20c1d7d8d59",
+                  "type": "Categorical",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "v",
+                        "Entity": "v12",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "v"
+                                    }
+                                  },
+                                  "Property": "failure_mode"
+                                }
+                              }
+                            ],
+                            "Values": [
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'Heat Dissipation Failure'"
+                                  }
+                                }
+                              ],
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'Overstrain Failure'"
+                                  }
+                                }
+                              ],
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'Power Failure'"
+                                  }
+                                }
+                              ],
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'Random Failure'"
+                                  }
+                                }
+                              ],
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'Tool Wear Failure'"
+                                  }
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "v12"
+                        }
+                      },
+                      "Property": "failure_mode"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "93668e7d033268a6a806",
+                  "type": "Categorical",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "s",
+                        "Entity": "sensor_data",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "In": {
+                                "Expressions": [
+                                  {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Source": "s"
+                                        }
+                                      },
+                                      "Property": "Failure Mode"
+                                    }
+                                  }
+                                ],
+                                "Values": [
+                                  [
+                                    {
+                                      "Literal": {
+                                        "Value": "'No Failure'"
+                                      }
+                                    }
+                                  ],
+                                  [
+                                    {
+                                      "Literal": {
+                                        "Value": "'Random Failure'"
+                                      }
+                                    }
+                                  ]
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "sensor_data"
+                        }
+                      },
+                      "Property": "Failure Mode"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "af58a5300bbe85cb5a69",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mesure"
+                        }
+                      },
+                      "Property": "Machine Failures"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "clusteredBarChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mesure"
+                        }
+                      },
+                      "Property": "Machine Failures"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "sensor_data"
+                        }
+                      },
+                      "Property": "Failure Mode"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "2c48a208b75d8ed6eb65": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "95a37b2c1965dcd88167": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "b88b643eda25c0021c59",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "sensor_data"
+                        }
+                      },
+                      "Property": "Tool Wear Bucket"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "83db8a60b198e1766d2c",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mesure"
+                        }
+                      },
+                      "Property": "Machine Failures"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "clusteredBarChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mesure"
+                        }
+                      },
+                      "Property": "Machine Failures"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "sensor_data"
+                        }
+                      },
+                      "Property": "Tool Wear Bucket"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "6e6728c0cd818ba97080": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "1afd43b3830973500080",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "sensor_data"
+                        }
+                      },
+                      "Property": "Power Band"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "f076f27e040ea0d0643e",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mesure"
+                        }
+                      },
+                      "Property": "Machine Failures"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "clusteredColumnChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mesure"
+                        }
+                      },
+                      "Property": "Machine Failures"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "sensor_data"
+                        }
+                      },
+                      "Property": "Power Band"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "2d127ae0917cebc011a0": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "7e091275eb329017e2b2",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "sensor_data"
+                        }
+                      },
+                      "Property": "Failure Mode"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "sensor_data"
+                        }
+                      },
+                      "Property": "Failure Mode"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "beceabdd358456c0c825": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "bd0678a4a608029cbe87",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "sensor_data"
+                        }
+                      },
+                      "Property": "Prescriptive Action"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "ae5ef585260bc00ce0bb",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mesure"
+                        }
+                      },
+                      "Property": "Total Operations"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "848222662032d5321a4e",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mesure"
+                        }
+                      },
+                      "Property": "Machine Failures"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "a3ee31fec542563e6686",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mesure"
+                        }
+                      },
+                      "Property": "Failure Rate %"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "tableEx",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "NativeVisualCalculation": {
+                      "Language": "dax",
+                      "Expression": "IF(ISATLEVEL([Prescriptive Action]), [Failure Rate_Base], BLANK())",
+                      "Name": "Failure Rate"
+                    },
+                    "Annotations": {
+                      "customTotalMetadata": {
+                        "baseQueryName": "mesure.Failure Rate %"
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "48ec83f94b6a84900307": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "b15df3320ec51860a837",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "sensor_data"
+                        }
+                      },
+                      "Property": "Type"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "4cbb7552bda5aea74d07",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mesure"
+                        }
+                      },
+                      "Property": "Total Operations"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "6ca546ed1434493eeb55",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mesure"
+                        }
+                      },
+                      "Property": "Failure Rate %"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "7b84f47995d6783c3b30",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mesure"
+                        }
+                      },
+                      "Property": "Avg Torque"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "7676d17c7c2708149870",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mesure"
+                        }
+                      },
+                      "Property": "Avg Tool Wear"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "a6e74c11b620169ebb0e",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mesure"
+                        }
+                      },
+                      "Property": "Avg Mechanical Power"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "tableEx",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "NativeVisualCalculation": {
+                      "Language": "dax",
+                      "Expression": "IF(ISATLEVEL([Type]), [Failure Rate %_Base], BLANK())",
+                      "Name": "Failure Rate (%)"
+                    },
+                    "Annotations": {
+                      "customTotalMetadata": {
+                        "baseQueryName": "mesure.Failure Rate %"
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "f67e389c817ad7a4db69": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "85f5e9665c96a19e0d14": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "0c21df50dabbd3d62a84": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          }
+        }
+      }
+    },
+    "objects": {
+      "merge": {
+        "outspacePane": [
+          {
+            "properties": {
+              "expanded": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}
